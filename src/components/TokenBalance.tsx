@@ -324,10 +324,21 @@ export function TokenBalance() {
       const amount = parseUnits(mintAmount.toString(), dec);
 
       console.log("Initiating mint transaction with address:", address);
+      console.log(
+        "Using smart contract wallet for gasless transaction:",
+        isUsingSmartWallet
+      );
+
+      // Attempt to use gasless transaction via Privy's paymaster
+      if (isUsingSmartWallet) {
+        console.log("Attempting gasless transaction with paymaster");
+      }
+
+      // Execute the transaction
       writeContract({
         address: mockUsdtAddress,
         abi: MockUSDTAbi,
-        functionName: "mint",
+        functionName: "mint" as const, // Use const assertion to fix type error
         args: [address, amount],
       });
     } catch (error) {

@@ -11,6 +11,7 @@ export const privyConfig: PrivyClientConfig = {
   appearance: {
     showWalletLoginFirst: true,
   },
+  // Configure for Base Sepolia testnet
   supportedChains: [
     {
       id: baseSepolia.id,
