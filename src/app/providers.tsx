@@ -9,6 +9,7 @@ import { privyConfig } from "@/lib/config/privy";
 import { getConfig } from "@/lib/config/wagmi";
 
 import type { State } from "wagmi";
+import { Toaster } from "@/components/ui/toaster";
 
 // Replace this with your Privy config
 
@@ -24,6 +25,7 @@ export function Providers(props: {
       <QueryClientProvider client={queryClient}>
         <WagmiProvider config={config} initialState={props.initialState}>
           {props.children}
+          <Toaster />
         </WagmiProvider>
       </QueryClientProvider>
     </PrivyProvider>
