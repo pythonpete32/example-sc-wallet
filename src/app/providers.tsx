@@ -1,0 +1,31 @@
+"use client";
+
+import { PrivyProvider } from "@privy-io/react-auth";
+import { WagmiProvider } from "@privy-io/wagmi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { type ReactNode, useState } from "react";
+
+import { privyConfig } from "@/lib/config/privy";
+import { getConfig } from "@/lib/config/wagmi";
+
+import type { State } from "wagmi";
+
+// Replace this with your Privy config
+
+export function Providers(props: {
+  children: ReactNode;
+  initialState?: State;
+}) {
+  const [config] = useState(() => getConfig());
+  const [queryClient] = useState(() => new QueryClient());
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <PrivyProvider appId="cm8mzzgtc007r12v9fvyhgnar" config={privyConfig}>
+        <WagmiProvider config={config} initialState={props.initialState}>
+          {props.children}
+        </WagmiProvider>
+      </PrivyProvider>
+    </QueryClientProvider>
+  );
+}
