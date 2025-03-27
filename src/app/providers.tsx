@@ -20,12 +20,12 @@ export function Providers(props: {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <PrivyProvider appId="cm8mzzgtc007r12v9fvyhgnar" config={privyConfig}>
+    <PrivyProvider appId="cm8mzzgtc007r12v9fvyhgnar" config={privyConfig}>
+      <QueryClientProvider client={queryClient}>
         <WagmiProvider config={config} initialState={props.initialState}>
           {props.children}
         </WagmiProvider>
-      </PrivyProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </PrivyProvider>
   );
 }
